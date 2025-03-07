@@ -1,0 +1,114 @@
+SAMPLE_SPECIES,ENVIRON_COMPARTMENT,ENVIRON_COMPARTMENT_SUB,SAMPLE_MATRIX,Name_EN,Justification
+Acesta excavata,Aquatic,Biota/Aquatic,Biota,Deep-sea file clam,Marine bivalve species
+Actitis (Sp.),Biota,Biota/Aquatic,Biota,Sandpiper spp.,Genus of shorebirds
+Actitis hypoleucos,Biota,Biota/Aquatic,Biota,Common sandpiper,Shorebird species
+Actitis macularius,Biota,Biota/Aquatic,Biota,Spotted sandpiper,Shorebird species
+Alces alces,Biota,Biota/Terrestrial,Biota,Moose,Terrestrial herbivorous mammal
+Anodonta anatina,Biota,Biota/Aquatic,Biota,Duck mussel,Biota/Aquatic mussel species
+Apion dispar,Biota,Biota/Terrestrial,Biota,Weevil sp.,Terrestrial insect species
+Apis mellifera,Biota,Biota/Terrestrial,Biota,Western honey bee,Terrestrial pollinating insect
+Aporrectodea caliginosa,Biota,Biota/Terrestrial,Biota,Grey worm,Soil-dwelling earthworm species
+Aquila chrysaetos,Biota,Biota/Terrestrial,Biota,Golden eagle,Terrestrial bird of prey
+Arctogadus glacialis,Biota,Biota/Aquatic,Biota,Arctic cod,Marine fish species
+Ascophyllum nodosum,Biota,Biota/Aquatic,Biota,Knotted wrack,Marine algae species
+Benthic organisms,Biota,Biota/Aquatic,Biota,Benthic organisms,Non-taxonomic grouping
+Bombus (Sp.),Biota,Biota/Terrestrial,Biota,Bumblebee spp.,Genus of terrestrial pollinating insects
+Brosme brosme,Biota,Biota/Aquatic,Biota,Cusk,Marine fish species
+Bubo bubo,Biota,Biota/Terrestrial,Biota,Eurasian eagle owl,Terrestrial bird of prey
+Butorides striata,Biota,Biota/Terrestrial,Biota,Striated heron,Wading bird that hunts in shallow waters
+Cancer pagurus,Biota,Biota/Aquatic,Biota,Edible crab,Marine crustacean species
+Capreolus capreolus,Biota,Biota/Terrestrial,Biota,Roe deer,Terrestrial herbivorous mammal
+Centrolabrus exoletus,Biota,Biota/Aquatic,Biota,Rock cook wrasse,Marine fish species
+Cervus elaphus,Biota,Biota/Terrestrial,Biota,Red deer,Terrestrial herbivorous mammal
+Chironomidae (Family),Biota,Not reported,Biota,Non-biting midges,Family of aquatic insects
+Chlamys (Sp.),Biota,Biota/Aquatic,Biota,Scallop genus,Genus of marine bivalves
+Chlamys islandica,Biota,Biota/Aquatic,Biota,Iceland scallop,Marine bivalve species
+Mimachlamys varia,Biota,Biota/Aquatic,Biota,Variegated scallop,Marine bivalve species
+Clupea harengus,Biota,Biota/Aquatic,Biota,Atlantic herring,Marine fish species
+Coregonus lavaretus,Biota,Biota/Aquatic,Biota,European whitefish,Biota/Aquatic fish species
+Ctenolabrus rupestris,Biota,Biota/Aquatic,Biota,Goldsinny wrasse,Marine fish species
+Esox lucius,Biota,Biota/Aquatic,Biota,Northern pike,Biota/Aquatic fish species
+Euphausiacea (Order),Biota,Biota/Aquatic,Biota,Krill,Order of marine crustaceans
+Falco peregrinus,Biota,Biota/Terrestrial,Biota,Peregrine falcon,Terrestrial bird of prey
+Fannia stigi,Biota,Biota/Terrestrial,Biota,None,Terrestrial insect species
+Gadus morhua,Biota,Biota/Aquatic,Biota,Atlantic cod,Marine fish species
+Gastropoda (Class),Biota,Not reported,Biota,Gastropods,Class contains both aquatic and terrestrial species
+Gymnocephalus cernuus,Biota,Biota/Aquatic,Biota,Ruffe,Biota/Aquatic fish species
+Himantopus (Sp.),Biota,Biota/Aquatic,Biota,Stilt spp.,Genus of wading birds
+Himantopus himantopus,Biota,Biota/Aquatic,Biota,Common stilt,Wading bird species
+Himantopus himantopus himantopus,Biota,Biota/Aquatic,Biota,Black-winged stilt,Subspecies of wading bird
+Hylocomium splendens,Biota,Biota/Terrestrial,Biota,Glittering woodmoss,Terrestrial moss species
+Labrus bergylta,Biota,Biota/Aquatic,Biota,Ballan wrasse,Marine fish species
+Labrus mixtus,Biota,Biota/Aquatic,Biota,Cuckoo wrasse,Marine fish species
+Larus argentatus,Biota,Biota/Aquatic,Biota,European herring gull,Seabird that forages in marine environment
+Larus hyperboreus,Biota,Biota/Aquatic,Biota,Glaucous gull,Seabird that forages in marine environment
+Larus sabini,Biota,Biota/Aquatic,Biota,Sabine's gull,Seabird species
+Lichen (Sp.),Biota,Biota/Terrestrial,Biota,Lichen species,Non-specific lichen identification
+Limanda limanda,Biota,Biota/Aquatic,Biota,Common dab,Marine fish species
+Limaria (Sp.),Biota,Biota/Aquatic,Biota,File shell genus,Genus of marine bivalves
+Limaria hians,Biota,Biota/Aquatic,Biota,Gaping file shell,Marine bivalve species
+Limaria loscombi,Biota,Biota/Aquatic,Biota,Loscomb's file shell,Marine bivalve species
+Limatula (Sp.),Biota,Biota/Aquatic,Biota,File shell genus,Genus of marine bivalves
+Limatula gwyni,Biota,Biota/Aquatic,Biota,Gwyn's file shell,Marine bivalve species
+Limatula subauriculata,Biota,Biota/Aquatic,Biota,Subauricular file shell,Marine bivalve species
+Limatula subovata,Biota,Biota/Aquatic,Biota,Subovate file shell,Marine bivalve species
+Limea (Sp.),Biota,Biota/Aquatic,Biota,File shell genus,Genus of marine bivalves
+Limea sarsi,Biota,Biota/Aquatic,Biota,Sars' file shell,Marine bivalve species
+Littorina (Sp.),Biota,Biota/Aquatic,Biota,Periwinkle genus,Genus of marine snails
+Littorina littorea,Biota,Biota/Aquatic,Biota,Common periwinkle,Marine snail species
+Lota lota,Biota,Biota/Aquatic,Biota,Burbot,Biota/Aquatic fish species
+Lumbricidae (Family),Biota,Biota/Terrestrial,Biota,Earthworm family,Family of soil-dwelling earthworms
+Lumbricus (Sp.),Biota,Biota/Terrestrial,Biota,Earthworm spp.,Genus of terrestrial earthworms
+Lumbricus rubellus,Biota,Biota/Terrestrial,Biota,Red earthworm,Soil-dwelling earthworm species
+Mallotus villosus,Biota,Biota/Aquatic,Biota,Capelin,Marine fish species
+Microstomus kitt,Biota,Biota/Aquatic,Biota,Lemon sole,Marine fish species
+Mytilus edulis,Biota,Biota/Aquatic,Biota,Blue mussel,Marine bivalve species
+Nucella lapillus,Biota,Biota/Aquatic,Biota,Dog whelk,Marine snail species
+Octolasion cyaneum,Biota,Biota/Terrestrial,Biota,Woodland blue worm,Soil-dwelling earthworm species
+Ostrea (Sp.),Biota,Biota/Aquatic,Biota,Oyster genus,Genus of marine bivalves
+Ostrea edulis,Biota,Biota/Aquatic,Biota,European flat oyster,Marine bivalve species
+Ostreidae (Family),Biota,Biota/Aquatic,Biota,True oyster family,Family of marine bivalves
+Pandalus borealis,Biota,Biota/Aquatic,Biota,Northern shrimp,Marine crustacean species
+Pandion haliaetus,Biota,Biota/Aquatic,Biota,Osprey,Fish-eating bird of prey
+Passer domesticus,Biota,Biota/Terrestrial,Biota,House sparrow,Urban-dwelling bird species
+Patella vulgata,Biota,Biota/Aquatic,Biota,Common limpet,Marine gastropod species
+Pectinidae (Family),Biota,Biota/Aquatic,Biota,Scallop family,Family of marine bivalves
+Perca fluviatilis,Biota,Biota/Aquatic,Biota,European perch,Biota/Aquatic fish species
+Phaeophyceae (Class),Biota,Biota/Aquatic,Biota,Brown algae,Class of marine algae
+Phoca hispida,Biota,Biota/Aquatic,Biota,Ringed seal,Marine mammal
+Phoca vitulina,Biota,Biota/Aquatic,Biota,Harbor seal,Marine mammal
+Phoxinus phoxinus,Biota,Biota/Aquatic,Biota,Eurasian minnow,Biota/Aquatic fish species
+Pinus sylvestris,Biota,Biota/Terrestrial,Biota,Scots pine,Terrestrial tree species
+Pisauridae (Family),Biota,Biota/Terrestrial,Biota,Nursery web spiders,Family of terrestrial spiders
+Platichthys flesus,Biota,Biota/Aquatic,Biota,European flounder,Marine fish species
+Pleuronectes platessa,Biota,Biota/Aquatic,Biota,European plaice,Marine fish species
+Polychaeta (Class),Biota,Biota/Aquatic,Biota,Bristle worms,Class of marine worms
+Rangifer tarandus platyrhynchus,Biota,Biota/Terrestrial,Biota,Svalbard reindeer,Terrestrial herbivorous mammal
+Rangifer tarandus tarandus,Biota,Biota/Terrestrial,Biota,Eurasian tundra reindeer,Terrestrial herbivorous mammal
+Rattus norvegicus,Biota,Biota/Terrestrial,Biota,Brown rat,Terrestrial mammal often in human areas
+Recurvirostra (Sp.),Biota,Biota/Aquatic,Biota,Avocet spp.,Genus of wading birds
+Recurvirostra avosetta,Biota,Biota/Aquatic,Biota,Pied avocet,Wading bird species
+Recurvirostridae,Biota,Biota/Aquatic,Biota,Avocet & Stilt spp.,Family of wading birds
+Rhombognathus setosus,Biota,Biota/Aquatic,Biota,Marine mite,Marine mite species
+Rissa tridactyla,Biota,Biota/Aquatic,Biota,Black-legged kittiwake,Seabird that forages in marine environment
+Rissa tridactyla tridactyla,Biota,Biota/Aquatic,Biota,Black-legged kittiwake,Subspecies of seabird
+Salmo salar,Biota,Not reported,Biota,Atlantic salmon,Anadromous fish species
+Salmo trutta,Biota,Biota/Aquatic,Biota,Brown trout,Biota/Aquatic fish species
+Salvelinus alpinus,Biota,Biota/Aquatic,Biota,Arctic char,Biota/Aquatic fish species
+Scolopacidae,Biota,Biota/Aquatic,Biota,Sandpipers,Family of shorebirds
+Scophthalmus maximus,Biota,Biota/Aquatic,Biota,Turbot,Marine fish species
+Solea solea,Biota,Biota/Aquatic,Biota,Common sole,Marine fish species
+Somateria mollissima,Biota,Biota/Aquatic,Biota,Common eider,Sea duck that forages in marine environment
+Sorbus aucuparia,Biota,Biota/Terrestrial,Biota,Rowan tree,Terrestrial tree species
+Symphodus melops,Biota,Biota/Aquatic,Biota,Corkwing wrasse,Marine fish species
+Thalassaphorura debilis,Biota,Biota/Aquatic,Biota,None,Marine springtail species
+Tringa (Sp.),Biota,Biota/Aquatic,Biota,Shank and Tattler spp.,Genus of wading birds
+Tringa hypoleucos,Biota,Biota/Aquatic,Biota,Common sandpiper,Wading bird species
+Tringa macularia,Biota,Biota/Aquatic,Biota,Spotted sandpiper,Wading bird species
+Turdus pilaris,Biota,Biota/Terrestrial,Biota,Fieldfare,Terrestrial thrush species
+Uria lomvia,Biota,Biota/Aquatic,Biota,Thick-billed murre,Seabird that forages in marine environment
+Ursus maritimus,Biota,Biota/Terrestrial,Biota,Polar bear,Marine-associated but terrestrial predator
+Vulpes lagopus,Biota,Biota/Terrestrial,Biota,Arctic fox,Terrestrial predatory mammal
+Vulpes vulpes,Biota,Biota/Terrestrial,Biota,Red fox,Terrestrial predatory mammal
+Xema (Sp.),Biota,Biota/Aquatic,Biota,Sabine's gull,Genus of seabirds
+Xema sabini,Biota,Biota/Aquatic,Biota,Sabine's gull,Seabird species
