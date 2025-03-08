@@ -74,7 +74,11 @@ species_tissue_data <- species_tissue_data %>%
 
 # First calculate sample counts for each species-tissue combination
 sample_counts <- species_tissue_data %>%
-  group_by(species_tissue, final_group) %>%
+  group_by(species_tissue, final_group, SITE_GEOGRAPHIC_FEATURE, short_name) %>%
+  mutate(SITE_GEOGRAPHIC_FEATURE = case_match(SITE_GEOGRAPHIC_FEATURE,
+                                                  "Coastal, fjord" ~ "SW",
+                                                  "Lake, pond, pool, reservoir" ~ "FW",
+                                                  "River, stream, canal" ~ "FW")) |>
   reframe(
     n_samples = n(),
     .groups = "drop",
@@ -86,10 +90,6 @@ sample_counts <- species_tissue_data %>%
   mutate(
     # Add sample count to display label
     tissue_with_n = paste0(SAMPLE_TISSUE, " (", n_samples, ")"),
-    SITE_GEOGRAPHIC_FEATURE = case_match(SITE_GEOGRAPHIC_FEATURE,
-                                         "Coastal, fjord" ~ "SW",
-                                         "Lake, pond, pool, reservoir" ~ "FW",
-                                         "River, stream, canal" ~ "FW"),
     tissue_with_n_ordered = factor(tissue_with_n,
                                    levels = levels(reorder(tissue_with_n, MEASURED_VALUE, median, decreasing = TRUE))),
     short_name_ordered = factor(short_name,
