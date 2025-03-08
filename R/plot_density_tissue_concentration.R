@@ -203,7 +203,7 @@ density_plot_sw <- ggplot(
   labs(
     #   title = "Copper Bioaccumulation Across Marine Organisms (Norway, 1990-2025)",
     #   subtitle = "Distribution of concentration by species and tissue type",
-    x = "Copper Concentration (µg/kg, log scale)",
+    x = "Copper Concentration (mg/kg wet weight, log scale)",
     y = NULL,
   ) +
 
