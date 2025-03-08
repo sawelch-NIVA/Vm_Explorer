@@ -1,11 +1,11 @@
 SAMPLE_SPECIES,ENVIRON_COMPARTMENT,ENVIRON_COMPARTMENT_SUB,SAMPLE_MATRIX,Name_EN,Justification,species_group,species_name_source
 Mytilus edulis,Biota,Biota/Aquatic,Biota,Blue mussel,Marine bivalve species,Molluscs,Mytilus edulis
-Carcinus maenas,NA,NA,NA,European green crab,NA,Crustaceans,Carcinus maenas
+Carcinus maenas,NA,NA,NA,European green crab,NA,Arthropods,Carcinus maenas
 Actinopterygii (Klasse),NA,NA,NA,Actinopterygii (Class),NA,Fish,Actinopterygii (Klasse)
 Polychaeta (Klasse),NA,NA,NA,Polychaeta (Class),NA,Worms,Polychaeta (Klasse)
 Patella vulgata,Biota,Biota/Aquatic,Biota,Common limpet,Marine gastropod species,Molluscs,Patella vulgata
 Gadidae (Familie),NA,NA,NA,Gadidae (Family),NA,Fish,Gadidae (Familie)
-Lithodidae (Familie),NA,NA,NA,Lithodidae (Family),NA,Crustaceans,Lithodidae (Familie)
+Lithodidae (Familie),NA,NA,NA,Lithodidae (Family),NA,Arthropods,Lithodidae (Familie)
 Perca fluviatilis,Biota,Biota/Aquatic,Biota,European perch,Biota/Aquatic fish species,Fish,Perca fluviatilis
 Esox lucius,Biota,Biota/Aquatic,Biota,Northern pike,Biota/Aquatic fish species,Fish,Esox lucius
 Gadus morhua,Biota,Biota/Aquatic,Biota,Atlantic cod,Marine fish species,Fish,Gadus morhua
@@ -20,31 +20,31 @@ Lota lota,Biota,Biota/Aquatic,Biota,Burbot,Biota/Aquatic fish species,Fish,Lota 
 Chlamys islandica,Biota,Biota/Aquatic,Biota,Iceland scallop,Marine bivalve species,Molluscs,Chlamys islandica
 Gastropoda (Klasse),NA,NA,NA,Gastropoda (Class),NA,Molluscs,Gastropoda (Klasse)
 Salmo salar,Biota,Not reported,Biota,Atlantic salmon,Anadromous fish species,Fish,Salmo salar
-Cancer pagurus,Biota,Biota/Aquatic,Biota,Edible crab,Marine crustacean species,Crustaceans,Cancer pagurus
+Cancer pagurus,Biota,Biota/Aquatic,Biota,Edible crab,Marine crustacean species,Arthropods,Cancer pagurus
 Coregonus lavaretus,Biota,Biota/Aquatic,Biota,European whitefish,Biota/Aquatic fish species,Fish,Coregonus lavaretus
 Fucus vesiculosus,NA,NA,NA,Bladderwrack,NA,Plants,Fucus vesiculosus
 Ascophyllum nodosum,Biota,Biota/Aquatic,Biota,Knotted wrack,Marine algae species,Plants,Ascophyllum nodosum
 Acesta excavata,Aquatic,Biota/Aquatic,Biota,Deep-sea file clam,Marine bivalve species,Molluscs,Acesta excavata
 Thymallus thymallus,NA,NA,NA,European grayling,NA,Fish,Thymallus thymallus
 Pleuronectes platessa,Biota,Biota/Aquatic,Biota,European plaice,Marine fish species,Fish,Pleuronectes platessa
-Euphausiacea (Orden),NA,NA,NA,Euphausiacea (Order),NA,Crustaceans,Euphausiacea (Orden)
-Pandalus borealis,Biota,Biota/Aquatic,Biota,Northern shrimp,Marine crustacean species,Crustaceans,Pandalus borealis
+Euphausiacea (Orden),NA,NA,NA,Euphausiacea (Order),NA,Arthropods,Euphausiacea (Orden)
+Pandalus borealis,Biota,Biota/Aquatic,Biota,Northern shrimp,Marine crustacean species,Arthropods,Pandalus borealis
 Nucella lapillus,Biota,Biota/Aquatic,Biota,Dog whelk,Marine snail species,Molluscs,Nucella lapillus
 Littorina (Slekt),NA,NA,NA,Littorina (Genus),NA,Molluscs,Littorina (Slekt)
-Palaemon adspersus,NA,NA,NA,Baltic prawn,NA,Crustaceans,Palaemon adspersus
+Palaemon adspersus,NA,NA,NA,Baltic prawn,NA,Arthropods,Palaemon adspersus
 Melanogrammus aeglefinus,NA,NA,NA,Haddock,NA,Fish,Melanogrammus aeglefinus
 Erginus (Slekt),NA,NA,NA,Erginus (Genus),NA,Molluscs,Erginus (Slekt)
 Lepetella (Slekt),NA,NA,NA,Lepetella (Genus),NA,Molluscs,Lepetella (Slekt)
 Ctenolabrus rupestris,Biota,Biota/Aquatic,Biota,Goldsinny wrasse,Marine fish species,Fish,Ctenolabrus rupestris
 Symphodus melops,Biota,Biota/Aquatic,Biota,Corkwing wrasse,Marine fish species,Fish,Symphodus melops
-Rhombognathus setosus,Biota,Biota/Aquatic,Biota,Marine mite,Marine mite species,Other Organisms,Rhombognathus setosus
+Rhombognathus setosus,Biota,Biota/Aquatic,Biota,Marine mite,Marine mite species,Arthropods,Rhombognathus setosus
 Labrus bergylta,Biota,Biota/Aquatic,Biota,Ballan wrasse,Marine fish species,Fish,Labrus bergylta
 Centrolabrus exoletus,Biota,Biota/Aquatic,Biota,Rock cook wrasse,Marine fish species,Fish,Centrolabrus exoletus
-Bunndyr,NA,NA,NA,Benthic Organisms,NA,Other Organisms,Bunndyr
+Bunndyr,NA,NA,NA,Benthic Organisms,NA,Other,Bunndyr
 Rutilus rutilus,NA,NA,NA,Common roach,Common roach,Fish,Rutilus rutilus
 Sander lucioperca,NA,NA,NA,Zander,Zander,Fish,Sander lucioperca
 Blicca bjoerkna,NA,NA,NA,White bream,NA,Fish,Blicca bjoerkna
 Abramis brama,NA,NA,NA,Common bream,NA,Fish,Abramis brama
 Leuciscus idus,NA,NA,NA,Leuciscus idus,NA,Fish,Leuciscus idus
 Labrus mixtus,Biota,Biota/Aquatic,Biota,Cuckoo wrasse,Marine fish species,Fish,Labrus mixtus
-Chironomidae (Familie),NA,NA,NA,Chironomidae (Family),NA,Other Organisms,Chironomidae (Familie)
+Chironomidae (Familie),NA,NA,NA,Chironomidae (Family),NA,Other,Chironomidae (Familie)
