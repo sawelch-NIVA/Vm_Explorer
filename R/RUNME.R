@@ -1,5 +1,6 @@
 # Setup ----
 pacman::p_load(
+  "MASS", # be careful with namespacing of the many select() functions
   "tidyverse",
   "ggplot2",
   "viridis",
@@ -19,15 +20,18 @@ pacman::p_load(
   "ggh4x",
   "lwgeom",
   "ggrepel",
-  "DescTools"
+  "extrafont"
 )
+
+extrafont::choose_font("Sarabun")
+consistent_theming <- function(base_size) theme_void(base_family = "Sarabun", base_size = 14)
 
 `%notin%` <- Negate(`%in%`)
 
 compartments_df <- read_csv("R/data/compartments_count.csv")
 
 copper_env <- read_excel("R/data/complete_dataset_20250226_1807.xlsx") |>
-  select(where(~ !all(is.na(.)))) |> # save some data by trimming fields that are currently irrelevant
+  dplyr::select(where(~ !all(is.na(.)))) |> # save some data by trimming fields that are currently irrelevant
   filter(
     ENVIRON_COMPARTMENT %notin% c("No information/not reported", "Not reported")
   ) |>
@@ -450,9 +454,8 @@ faceted_map <- ggplot() +
   #   title = "Copper Concentrations in Norwegian Waters",
   #   subtitle = "Freshwater (Land) and Marine (Coastal Region) Measured Concentration of Total Copper, 1980-2025, by Region/Fylke"
   # ) +
-  theme_void() +
-  theme(panel.spacing.x = unit(-5, "lines"),
-        text = element_text(family = "Sarabun"))
+  consistent_theming() +
+  theme(panel.spacing.x = unit(-5, "lines"))
 
 
 # View the faceted map
@@ -461,16 +464,8 @@ print(faceted_map)
 # 4. Biota Tissue Concentrations Visualization ----
 copper_species_lookup <- read_csv("R/data/copper_species_lookup.csv")
 biota_data <- copper_clean %>%
-  filter(
-    # Include any data that could be biota-related
-    ENVIRON_COMPARTMENT == "Biota" |
-      SAMPLE_MATRIX == "Biota" |
-      (!is.na(SAMPLE_SPECIES) & SAMPLE_SPECIES != "Not relevant")
-  )
-
-biota_cleaned <- biota_data %>%
-  # Filter out records with missing/irrelevant tissue data
-  filter(!is.na(SAMPLE_TISSUE) & SAMPLE_TISSUE != "Not relevant") %>%
+  filter(ENVIRON_COMPARTMENT == "Biota" & !is.na(SAMPLE_TISSUE)) |>
+  dplyr::select(ENVIRON_COMPARTMENT_SUB, SAMPLE_SPECIES, SAMPLE_TISSUE, MEASURED_VALUE, MEASURED_UNIT, SITE_GEOGRAPHIC_FEATURE) |>
   # Standardize taxonomic notation in species names
   mutate(
     # Preserve original names
@@ -487,30 +482,13 @@ biota_cleaned <- biota_data %>%
     )
   )
 
-biota_classified <- biota_cleaned %>%
+biota_classified <- biota_data %>%
   # Left join with our custom lookup table
   left_join(copper_species_lookup, by = c("SAMPLE_SPECIES")) %>%
   # Create fallback classification for species not in our lookup
   mutate(
     # Use species_group from lookup if available, otherwise apply fallback rules
-    final_group = case_when(
-      # If we have a match in our lookup, use that
-      !is.na(species_group) ~ species_group,
-
-      # Otherwise apply fallback rules based on scientific name patterns
-      grepl("idae$|Salmo|Esox|Perca|Gadus|Clupea", SAMPLE_SPECIES) ~ "Fish",
-      grepl("Mytilus|Ostrea|Modiolus|Gastropoda", SAMPLE_SPECIES) ~ "Mollusks",
-      grepl("Homarus|Cancer|Carcinus|Nephrops|Palaemon", SAMPLE_SPECIES) ~
-        "Crustaceans",
-      grepl("Fucus|Laminaria|Ascophyllum", SAMPLE_SPECIES) ~ "Plants",
-      grepl("Arenicola|Nereis|Polychaeta", SAMPLE_SPECIES) ~ "Worms",
-      grepl("Chironomus|Chironomidae", SAMPLE_SPECIES) ~ "Insects",
-      grepl("Bunndyr|benthic", tolower(SAMPLE_SPECIES)) ~ "Benthic Organisms",
-
-      # Default if no rules match
-      TRUE ~ "Other Organisms"
-    ),
-
+    final_group = species_group,
     # Create a display name for the species
     display_name = case_when(
       # If we have an English name from lookup, use it with scientific name
@@ -542,13 +520,12 @@ species_tissue_data <- species_tissue_data %>%
       final_group,
       levels = c(
         "Fish",
-        "Crustaceans",
-        "Mollusks",
+        "Molluscs",
         "Plants",
         "Worms",
-        "Insects",
+        "Arthropods",
         "Benthic Organisms",
-        "Other Organisms"
+        "Other"
       )
     ),
 
@@ -562,73 +539,105 @@ species_tissue_data <- species_tissue_data %>%
 # First calculate sample counts for each species-tissue combination
 sample_counts <- species_tissue_data %>%
   group_by(species_tissue, final_group) %>%
-  summarise(
+  reframe(
     n_samples = n(),
-    .groups = "drop"
-  )
-
-# Join the counts back to the main data
-species_tissue_data <- species_tissue_data %>%
-  left_join(sample_counts, by = c("species_tissue", "final_group"))
-
-# Create enhanced y-axis labels with sample counts
-species_tissue_data <- species_tissue_data %>%
+    .groups = "drop",
+    SAMPLE_TISSUE,
+    SITE_GEOGRAPHIC_FEATURE,
+    MEASURED_VALUE,
+    MEASURED_UNIT,
+    short_name
+  ) %>%
   mutate(
     # Add sample count to display label
-    species_tissue_with_n = paste0(species_tissue, " (n=", n_samples, ")")
+    tissue_with_n = paste0(SAMPLE_TISSUE, " (", n_samples, ")"),
+    SITE_GEOGRAPHIC_FEATURE = case_match(SITE_GEOGRAPHIC_FEATURE,
+                                         "Coastal, fjord" ~ "SW",
+                                         "Lake, pond, pool, reservoir" ~ "FW",
+                                         "River, stream, canal" ~ "FW"),
+    tissue_with_n_ordered = factor(tissue_with_n,
+                                   levels = levels(reorder(tissue_with_n, MEASURED_VALUE, median, decreasing = TRUE))),
+    short_name_ordered = factor(short_name,
+                            levels = levels(reorder(short_name, MEASURED_VALUE, median, decreasing = TRUE)))
   )
 
-# Create the presentation plot with variable-height facets and right-justified y-axis text
-presentation_plot <- ggplot(
-  species_tissue_data,
+sample_counts_fw <- sample_counts |> filter(SITE_GEOGRAPHIC_FEATURE == "FW")
+sample_counts_sw <- sample_counts |> filter(SITE_GEOGRAPHIC_FEATURE == "SW")
+
+# Create a custom labeller function that makes only the species names italic
+# TODO: For some reason this breaks tissue names...
+custom_labeller <- function(labels) {
+  # Check if the labels are from the 'short_name_ordered' variable
+  lapply(names(labels), function(variable) {
+    if (variable == "short_name_ordered") {
+      # Make species names (short_name) italic
+      lapply(labels[[variable]], function(x) parse(text = paste0("italic('", x, "')")))
+    } else {
+      # Return other labels unchanged
+      labels[[variable]]
+    }
+  })
+}
+
+density_plot_fw <- ggplot(
+  sample_counts_fw,
   aes(
     x = MEASURED_VALUE,
-    y = reorder(species_tissue_with_n, MEASURED_VALUE, median),
-    fill = final_group
+    y = reorder(tissue_with_n, MEASURED_VALUE, median),
+    fill = final_group,
+    linetype = MEASURED_UNIT
   )
 ) +
   # Ridge density plot with semi-transparency
-  geom_density_ridges(alpha = 0.8, scale = 0.9, rel_min_height = 0.01) +
+  stat_density_ridges(geom = "density_ridges_gradient", bandwidth = 0.15) +
+  # geom_density_ridges(alpha = 0.8, scale = 0.9, rel_min_height = 0.01) +
 
   # Log scale for concentrations with formatted labels
   scale_fill_brewer(palette = "Set3", name = "Organism Type") +
   scale_x_log10(
-    labels = comma_format(),
-    breaks = c(1, 10, 100, 1000, 10000, 100000)
+    breaks = c(0.01, 0.1, 1, 10, 100, 1000, 10000, 100000),
+    limits = c(0.01, 100000)
   ) +
-
+  facet_nested_wrap(~ short_name_ordered + tissue_with_n_ordered,
+                    dir = "h",
+                    strip.position = "left",
+                    scales = "free_y",
+                    nest_line = element_line(linetype = 1),
+                    ncol = 1,
+                    # labeller = custom_labeller,
+                    shrink = TRUE) +
   # Clear labeling
   labs(
-    title = "Copper Bioaccumulation Across Marine Organisms (Norway, 1990-2025)",
-    subtitle = "Distribution of concentration by species and tissue type",
+  #   title = "Copper Bioaccumulation Across Marine Organisms (Norway, 1990-2025)",
+  #   subtitle = "Distribution of concentration by species and tissue type",
     x = "Copper Concentration (µg/kg, log scale)",
     y = NULL,
   ) +
 
   # PowerPoint-friendly styling
-  theme_minimal(base_size = 12) +
+  consistent_theming(base_size = 8) +
   theme(
     # Title styling
-    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
-    plot.subtitle = element_text(
-      size = 12,
-      hjust = 0.5,
-      margin = margin(b = 20)
-    ),
+    # plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    # plot.subtitle = element_text(
+    #   size = 12,
+    #   hjust = 0.5,
+    #   margin = margin(b = 20)
+    # ),
 
     # Facet styling - add prominent section borders
-    strip.text = element_text(face = "bold", size = 14, hjust = 0),
-    strip.background = element_rect(
-      fill = "grey90",
-      color = "black",
-      linewidth = 1
-    ),
-    panel.border = element_rect(color = "grey70", fill = NA, linewidth = 0.5),
-    panel.spacing = unit(1, "lines"),
+    # strip.text = element_text(face = "bold", size = 14, hjust = 0),
+    # strip.background = element_rect(
+    #   fill = "grey90",
+    #   color = "black",
+    #   linewidth = 1
+    # ),
+    # panel.border = element_rect(color = "grey70", fill = NA, linewidth = 0.5),
+    strip.text = element_text(hjust = 0.9),
+    strip.clip = "off",
 
     # Axis styling
     axis.title.x = element_text(size = 12, margin = margin(t = 10)),
-    axis.text.y = element_text(size = 9, hjust = 1), # Right-justify y-axis text
     axis.text.x = element_text(size = 10),
 
     # Legend styling
@@ -639,11 +648,88 @@ presentation_plot <- ggplot(
     panel.grid.major.x = element_line(color = "grey90"),
     panel.grid.minor = element_blank(),
 
+
     # Add padding to avoid cut-off
-    plot.margin = margin(t = 10, r = 20, b = 10, l = 10)
+    plot.margin = margin(t = 20, r = 20)
   )
 
-presentation_plot
+density_plot_sw <- ggplot(
+  sample_counts_sw,
+  aes(
+    x = MEASURED_VALUE,
+    y = reorder(tissue_with_n, MEASURED_VALUE, median),
+    fill = final_group,
+    linetype = MEASURED_UNIT
+  )
+) +
+  # Ridge density plot with semi-transparency
+  stat_density_ridges(geom = "density_ridges_gradient", bandwidth = 0.15) +
+  # geom_density_ridges(alpha = 0.8, scale = 0.9, rel_min_height = 0.01) +
+
+  # Log scale for concentrations with formatted labels
+  scale_fill_brewer(palette = "Set3", name = "Organism Type") +
+  scale_x_log10(
+    breaks = c(0.01, 0.1, 1, 10, 100, 1000, 10000, 100000),
+    limits = c(0.01, 100000)
+  ) +
+  facet_nested_wrap(~ short_name_ordered + tissue_with_n_ordered,
+                    dir = "h",
+                    strip.position = "left",
+                    scales = "free_y",
+                    nest_line = element_line(linetype = 1),
+                    ncol = 1,
+                    # labeller = custom_labeller,
+                    shrink = TRUE) +
+  # Clear labeling
+  labs(
+    #   title = "Copper Bioaccumulation Across Marine Organisms (Norway, 1990-2025)",
+    #   subtitle = "Distribution of concentration by species and tissue type",
+    x = "Copper Concentration (µg/kg, log scale)",
+    y = NULL,
+  ) +
+
+  # PowerPoint-friendly styling
+  consistent_theming(base_size = 8) +
+  theme(
+    # Title styling
+    # plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    # plot.subtitle = element_text(
+    #   size = 12,
+    #   hjust = 0.5,
+    #   margin = margin(b = 20)
+    # ),
+
+    # Facet styling - add prominent section borders
+    # strip.text = element_text(face = "bold", size = 14, hjust = 0),
+    # strip.background = element_rect(
+    #   fill = "grey90",
+    #   color = "black",
+    #   linewidth = 1
+    # ),
+    # panel.border = element_rect(color = "grey70", fill = NA, linewidth = 0.5),
+    strip.text = element_text(hjust = 0.9),
+    strip.clip = "off",
+
+    # Axis styling
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 10),
+
+    # Legend styling
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold"),
+
+    # Grid styling
+    panel.grid.major.x = element_line(color = "grey90"),
+    panel.grid.minor = element_blank(),
+
+
+    # Add padding to avoid cut-off
+    plot.margin = margin(t = 20, r = 20)
+  )
+
+# TODO: split into 2 plots: FW & SW
+density_plot_fw
+density_plot_sw
 
 species_stats <- species_tissue_data %>%
   group_by(final_group) %>%
