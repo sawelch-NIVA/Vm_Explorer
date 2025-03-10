@@ -8,7 +8,8 @@ pacman::p_load(
   "sf",
   "scales",
   "patchwork",
-  "forecast", "tsibble",
+  "forecast",
+  "tsibble",
   "feasts",
   "fabletools",
   "ggridges",
@@ -27,8 +28,10 @@ pacman::p_load(
 )
 
 extrafont::choose_font("Sarabun")
-consistent_theming_map <- function(base_size) theme_void(base_family = "Sarabun", base_size = 14)
-consistent_theming_graph <- function(base_size) theme_minimal(base_family = "Sarabun", base_size = 14)
+consistent_theming_map <- function(base_size)
+  theme_void(base_family = "Sarabun", base_size = 14)
+consistent_theming_graph <- function(base_size)
+  theme_void(base_family = "Sarabun", base_size = 14)
 
 `%notin%` <- Negate(`%in%`)
 
@@ -44,7 +47,8 @@ copper_env <- read_excel("R/data/complete_dataset_20250226_1807.xlsx") |>
       MEASURED_UNIT,
       "mg/kg t.v." ~ "mg/kg dw",
       "mg/kg v.v." ~ "mg/kg ww"
-    )
+    ),
+    SAMPLE_TISSUE = str_replace(SAMPLE_TISSUE, "Body Part", "Tissue")
   )
 
 copper_sites <- read_excel(

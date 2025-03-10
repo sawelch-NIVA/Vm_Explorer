@@ -61,12 +61,12 @@ prepare_copper_data <- function(copper_data) {
       TIME_PERIOD = case_when(
         YEAR <= 1995 ~ "1980 - 1995",
         YEAR > 1995 & YEAR <= 2010 ~ "1996 - 2010",
-        YEAR > 2010 ~ "2010 - 2025",
+        YEAR > 2010 ~ "2011 - 2025",
         TRUE ~ "Unknown"
       )
     ) %>%
     # Filter to include only the three time periods we want
-    filter(TIME_PERIOD %in% c("1980 - 1995", "1996 - 2010", "2010 - 2025"))
+    filter(TIME_PERIOD %in% c("1980 - 1995", "1996 - 2010", "2011 - 2025"))
 }
 
 #' @description Convert points data to sf object with filtering
@@ -174,7 +174,7 @@ create_map <- function(data, background_data, title, subtitle, bbox, color_schem
       TIME_PERIOD_LABEL = case_when(
         TIME_PERIOD == "1980 - 1995" ~ paste0("1980 - 1995 (n = ", total_samples, ")"),
         TIME_PERIOD == "1996 - 2010" ~ paste0("1996 - 2010 (n = ", total_samples, ")"),
-        TIME_PERIOD == "2010 - 2025" ~ paste0("2010 - 2025 (n = ", total_samples, ")"),
+        TIME_PERIOD == "2011 - 2025" ~ paste0("2011 - 2025 (n = ", total_samples, ")"),
         TRUE ~ paste0(TIME_PERIOD, " (n = ", total_samples, ")")
       )
     )
@@ -194,6 +194,12 @@ create_map <- function(data, background_data, title, subtitle, bbox, color_schem
       color = "white",
       size = 0.5
     ) +
+    # geom_text_repel(
+    #   data = data,
+    #   aes(label = fylkesnavn |> str_extract("^(.+?)(?= - )"), geometry = geometry),
+    #   stat = "sf_coordinates",
+    #   family = "Sarabun"
+    # ) +
     # Apply chosen color scale
     chosen_scale +
     # Facet by time period with updated labels
@@ -520,7 +526,7 @@ create_map_with_inset <- function(main_data, background_data, inset_bbox = NULL)
       size = 0.2,
       linetype = "dotted"
     ) +
-    geom_sf_label(aes(label = fylkesnavn))
+    geom_sf_label(aes(label = fylkesnavn)) +
   # Simplified theme for the inset
   theme_void() +
     theme(
