@@ -8,8 +8,7 @@ pacman::p_load(
   "sf",
   "scales",
   "patchwork",
-  "forecast",
-  "tsibble",
+  "forecast", "tsibble",
   "feasts",
   "fabletools",
   "ggridges",
@@ -30,7 +29,6 @@ pacman::p_load(
 extrafont::choose_font("Sarabun")
 consistent_theming_map <- function(base_size) theme_void(base_family = "Sarabun", base_size = 14)
 consistent_theming_graph <- function(base_size) theme_minimal(base_family = "Sarabun", base_size = 14)
-
 
 `%notin%` <- Negate(`%in%`)
 

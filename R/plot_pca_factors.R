@@ -3,10 +3,10 @@
 
 # Load required packages ----
 library(tidyverse)
-library(FactoMineR)  # For PCA
-library(factoextra)  # For visualizing PCA results
-library(lubridate)   # For date handling
-library(gridExtra)   # For arranging multiple plots
+library(FactoMineR) # For PCA
+library(factoextra) # For visualizing PCA results
+library(lubridate) # For date handling
+library(gridExtra) # For arranging multiple plots
 
 # Data preparation function ----
 prepare_pca_data <- function(data, compartment_filter) {
@@ -60,26 +60,30 @@ prepare_pca_data <- function(data, compartment_filter) {
 run_pca <- function(data, title_prefix) {
   # Convert categorical variables to factors
   data <- data %>%
-    mutate(across(c(SITE_GEOGRAPHIC_FEATURE, ENVIRON_COMPARTMENT,
-                    ENVIRON_COMPARTMENT_SUB, season), as.factor))
+    mutate(across(c(
+      SITE_GEOGRAPHIC_FEATURE, ENVIRON_COMPARTMENT,
+      ENVIRON_COMPARTMENT_SUB, season
+    ), as.factor))
 
   # Handle missing values for PCA
   data_complete <- data %>%
     filter(complete.cases(.))
 
   # Check if we have enough data for PCA
-  if(nrow(data_complete) < 5) {
+  if (nrow(data_complete) < 5) {
     warning(paste0("Not enough complete data for ", title_prefix, " PCA"))
     return(NULL)
   }
 
   # Select PCA variables - adapt as needed based on your research question
-  pca_vars <- model.matrix(~ 0 +
-                             sample_year +
-                             season +
-                             SITE_GEOGRAPHIC_FEATURE +
-                             log_conc,
-                           data = data_complete) %>%
+  pca_vars <- model.matrix(
+    ~ 0 +
+      sample_year +
+      season +
+      SITE_GEOGRAPHIC_FEATURE +
+      log_conc,
+    data = data_complete
+  ) %>%
     as.data.frame()
 
   # Run PCA
@@ -90,22 +94,25 @@ run_pca <- function(data, title_prefix) {
     ggtitle(paste0(title_prefix, " - Scree Plot"))
 
   p2 <- fviz_pca_var(pca_result,
-                     col.var = "contrib",
-                     gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-                     repel = TRUE) +
+    col.var = "contrib",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE
+  ) +
     ggtitle(paste0(title_prefix, " - Variables"))
 
   p3 <- fviz_pca_ind(pca_result,
-                     col.ind = "cos2",
-                     gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-                     repel = TRUE) +
+    col.ind = "cos2",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE
+  ) +
     ggtitle(paste0(title_prefix, " - Samples"))
 
   p4 <- fviz_pca_biplot(pca_result,
-                        col.var = "contrib",
-                        col.ind = "cos2",
-                        repel = TRUE,
-                        ggtheme = theme_minimal()) +
+    col.var = "contrib",
+    col.ind = "cos2",
+    repel = TRUE,
+    ggtheme = theme_minimal()
+  ) +
     ggtitle(paste0(title_prefix, " - Biplot"))
 
   # Get variable contributions
@@ -124,7 +131,9 @@ run_pca <- function(data, title_prefix) {
 # Create additional visualizations based on PCA findings ----
 create_additional_plots <- function(data, title_prefix) {
   # Skip if no data
-  if(is.null(data)) return(NULL)
+  if (is.null(data)) {
+    return(NULL)
+  }
 
   p1 <- ggplot(data, aes(x = SITE_GEOGRAPHIC_FEATURE, y = log_conc, fill = ENVIRON_COMPARTMENT_SUB)) +
     geom_boxplot() +
@@ -138,10 +147,10 @@ create_additional_plots <- function(data, title_prefix) {
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
   # Only create temporal plot if we have enough years of data
-  if(length(unique(data$sample_year)) > 3) {
+  if (length(unique(data$sample_year)) > 3) {
     p2 <- ggplot(data, aes(x = sample_year, y = log_conc, color = ENVIRON_COMPARTMENT_SUB)) +
       geom_smooth(method = "loess", se = TRUE) +
-      facet_wrap(~ SITE_GEOGRAPHIC_FEATURE) +
+      facet_wrap(~SITE_GEOGRAPHIC_FEATURE) +
       theme_minimal() +
       labs(
         title = paste0(title_prefix, " - Temporal Trends"),
@@ -152,7 +161,7 @@ create_additional_plots <- function(data, title_prefix) {
   } else {
     p2 <- ggplot(data, aes(x = season, y = log_conc, fill = ENVIRON_COMPARTMENT_SUB)) +
       geom_boxplot() +
-      facet_wrap(~ SITE_GEOGRAPHIC_FEATURE) +
+      facet_wrap(~SITE_GEOGRAPHIC_FEATURE) +
       theme_minimal() +
       labs(
         title = paste0(title_prefix, " - Seasonal Patterns"),
@@ -181,23 +190,25 @@ nonbiota_additional_plots <- create_additional_plots(nonbiota_pca$data, "Non-Bio
 
 # 4. Save key results ----
 # Save PCA plots
-if(!is.null(biota_pca)) {
+if (!is.null(biota_pca)) {
   ggsave("plots/biota_pca_vars.png", biota_pca$plots$vars, width = 10, height = 8)
   ggsave("plots/biota_pca_biplot.png", biota_pca$plots$biplot, width = 10, height = 8)
 }
 
-if(!is.null(nonbiota_pca)) {
+if (!is.null(nonbiota_pca)) {
   ggsave("plots/nonbiota_pca_vars.png", nonbiota_pca$plots$vars, width = 10, height = 8)
   ggsave("plots/nonbiota_pca_biplot.png", nonbiota_pca$plots$biplot, width = 10, height = 8)
 }
 
 # 5. Special tissue-specific analysis for biota ----
-if(!is.null(biota_pca) && !is.null(biota_pca$data)) {
+if (!is.null(biota_pca) && !is.null(biota_pca$data)) {
   # Check if we have enough samples with tissue information
-  if(sum(!is.na(biota_pca$data$SAMPLE_TISSUE)) > 10) {
+  if (sum(!is.na(biota_pca$data$SAMPLE_TISSUE)) > 10) {
     # Analyze tissue-specific patterns
-    tissue_plot <- ggplot(biota_pca$data,
-                          aes(x = SAMPLE_TISSUE, y = log_conc, fill = SAMPLE_SPECIES)) +
+    tissue_plot <- ggplot(
+      biota_pca$data,
+      aes(x = SAMPLE_TISSUE, y = log_conc, fill = SAMPLE_SPECIES)
+    ) +
       geom_boxplot() +
       theme_minimal() +
       labs(
@@ -213,7 +224,7 @@ if(!is.null(biota_pca) && !is.null(biota_pca$data)) {
 }
 
 # 6. Print key findings for PCA dimensions ----
-if(!is.null(biota_pca$pca_result)) {
+if (!is.null(biota_pca$pca_result)) {
   summary_biota <- summary(biota_pca$pca_result)
   cat("\nBiota PCA Summary:\n")
   print(summary_biota$eig)
@@ -226,7 +237,7 @@ if(!is.null(biota_pca$pca_result)) {
   print(dimdesc(biota_pca$pca_result, axes = 2))
 }
 
-if(!is.null(nonbiota_pca$pca_result)) {
+if (!is.null(nonbiota_pca$pca_result)) {
   summary_nonbiota <- summary(nonbiota_pca$pca_result)
   cat("\nNon-Biota PCA Summary:\n")
   print(summary_nonbiota$eig)

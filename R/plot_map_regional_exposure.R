@@ -59,14 +59,14 @@ prepare_copper_data <- function(copper_data) {
       YEAR = as.numeric(format(as.Date(SAMPLE_DATE), "%Y")),
       # Create time period groups
       TIME_PERIOD = case_when(
-        YEAR <= 1990 ~ "1980s",
-        YEAR > 1990 & YEAR <= 2010 ~ "2000s",
-        YEAR > 2010 ~ "Since 2010",
+        YEAR <= 1995 ~ "1980 - 1995",
+        YEAR > 1995 & YEAR <= 2010 ~ "1996 - 2010",
+        YEAR > 2010 ~ "2010 - 2025",
         TRUE ~ "Unknown"
       )
     ) %>%
     # Filter to include only the three time periods we want
-    filter(TIME_PERIOD %in% c("1980s", "2000s", "Since 2010"))
+    filter(TIME_PERIOD %in% c("1980 - 1995", "1996 - 2010", "2010 - 2025"))
 }
 
 #' @description Convert points data to sf object with filtering
@@ -103,6 +103,7 @@ aggregate_by_fylke_time <- function(points_with_fylke) {
     )
 }
 
+## function: create_facet_map() ----
 #' @description Create map visualization with time facets
 #' @param data sf object with data to visualize
 #' @param background_data sf object to use as background
@@ -171,9 +172,9 @@ create_map <- function(data, background_data, title, subtitle, bbox, color_schem
     left_join(sample_counts, by = "TIME_PERIOD") %>%
     mutate(
       TIME_PERIOD_LABEL = case_when(
-        TIME_PERIOD == "1980s" ~ paste0("1980-1990 (n = ", total_samples, ")"),
-        TIME_PERIOD == "2000s" ~ paste0("1991-2010 (n = ", total_samples, ")"),
-        TIME_PERIOD == "Since 2010" ~ paste0("2011-present (n = ", total_samples, ")"),
+        TIME_PERIOD == "1980 - 1995" ~ paste0("1980 - 1995 (n = ", total_samples, ")"),
+        TIME_PERIOD == "1996 - 2010" ~ paste0("1996 - 2010 (n = ", total_samples, ")"),
+        TIME_PERIOD == "2010 - 2025" ~ paste0("2010 - 2025 (n = ", total_samples, ")"),
         TRUE ~ paste0(TIME_PERIOD, " (n = ", total_samples, ")")
       )
     )
@@ -204,10 +205,12 @@ create_map <- function(data, background_data, title, subtitle, bbox, color_schem
       expand = FALSE,
       datum = st_crs(4326)
     ) +
-    # Labels
-    consistent_theming() +
+    consistent_theming_map() +
     theme(
-      panel.spacing.x = unit(-5, "lines"),
+      panel.spacing.x = unit(-14, "lines"),
+      panel.spacing.y = unit(2, "lines"),
+      panel.background = element_blank(),
+
       # Improved legend formatting
       legend.position = "bottom",
       legend.key.width = unit(1.5, "cm"),
@@ -216,10 +219,10 @@ create_map <- function(data, background_data, title, subtitle, bbox, color_schem
       legend.text = element_text(size = 12, margin = margin(r = 10, t = 5)),
       legend.title.position = "left",
       legend.title = element_text(vjust = 0.85), # Vertical adjustment to align with keys
-      legend.box.spacing = unit(1, "cm"),  # Added spacing
+      legend.box.spacing = unit(-0.8, "cm"), # Added spacing
       # Improved year facet labels
       strip.text = element_text(size = 14, face = "bold"),
-      strip.background = element_rect(fill = "white", color = NA),
+      strip.background = element_blank(),
       strip.placement = "bottom"
     )
 }
@@ -410,6 +413,22 @@ marine_map <- add_norway_outline(marine_map)
 print(freshwater_map)
 print(marine_map)
 
+ggsave(
+  "plots/freshwater_copper_map.png",
+  freshwater_map,
+  width = 12,
+  height = 8,
+  dpi = 300
+)
+
+ggsave(
+  "plots/marine_copper_map.png",
+  marine_map,
+  width = 12,
+  height = 8,
+  dpi = 300
+)
+
 # 7. Create Map with Inset for Oslofjord Region ----
 
 #' @description Create map with inset of Oslofjord region that handles faceting
@@ -427,7 +446,7 @@ create_map_with_inset <- function(main_data, background_data, inset_bbox = NULL)
         xmin = 10.3, # Western side of Oslofjord
         ymin = 59.0, # Southern part of the fjord
         xmax = 11.2, # Eastern side of Oslofjord
-        ymax = 60.0  # Northern part including Oslo
+        ymax = 60.0 # Northern part including Oslo
       ),
       crs = 4326
     )
@@ -495,15 +514,15 @@ create_map_with_inset <- function(main_data, background_data, inset_bbox = NULL)
     ) +
     # Add Norway outline
     geom_sf(
-      data = norway_region_clipped  |> st_crop(y = inset_bbox),
+      data = norway_region_clipped |> st_crop(y = inset_bbox),
       fill = NA,
       color = "grey30",
       size = 0.2,
       linetype = "dotted"
     ) +
     geom_sf_label(aes(label = fylkesnavn))
-    # Simplified theme for the inset
-    theme_void() +
+  # Simplified theme for the inset
+  theme_void() +
     theme(
       legend.position = "none",
       strip.text = element_blank(),
@@ -519,10 +538,10 @@ create_map_with_inset <- function(main_data, background_data, inset_bbox = NULL)
     draw_plot(
       oslofjord_inset,
       # Position in bottom right corner
-      x = 0.75,      # distance from left
-      y = 0.05,      # distance from bottom
-      width = 0.25,  # width of inset
-      height = 0.25  # height of inset
+      x = 0.75, # distance from left
+      y = 0.05, # distance from bottom
+      width = 0.25, # width of inset
+      height = 0.25 # height of inset
     )
 
   return(combined_plot)
@@ -534,43 +553,44 @@ oslofjord_bbox <- st_bbox(
     xmin = 10.3, # Western side of Oslofjord
     ymin = 59.0, # Southern part of the fjord
     xmax = 11.2, # Eastern side of Oslofjord
-    ymax = 60.0  # Northern part including Oslo
+    ymax = 60.0 # Northern part including Oslo
   ),
   crs = 4326
 )
 
 # Create the map with inset
-freshwater_map_with_inset <- create_map_with_inset(
-  main_data = fylke_land_with_data,
-  background_data = freshwater_background,
-  inset_bbox = oslofjord_bbox
-)
-
-# Display the map with inset
-print(freshwater_map_with_inset)
-
-# Save the map
-ggsave(
-  "plots/freshwater_copper_map_with_oslofjord_inset.png",
-  freshwater_map_with_inset,
-  width = 12,
-  height = 8,
-  dpi = 300
-)
-
-# Similar code for marine map
-marine_map_with_inset <- create_map_with_inset(
-  main_data = fylke_coastal_with_data |> filter(!is.na(TIME_PERIOD)),
-  background_data = marine_background,
-  inset_bbox = oslofjord_bbox
-)
-
-# Display and save the marine map with inset
-print(marine_map_with_inset)
-ggsave(
-  "plots/marine_copper_map_with_oslofjord_inset.png",
-  marine_map_with_inset,
-  width = 12,
-  height = 8,
-  dpi = 300
-)
+# freshwater_map_with_inset <- create_map_with_inset(
+#   main_data = fylke_land_with_data,
+#   background_data = freshwater_background,
+#   inset_bbox = oslofjord_bbox
+# )
+#
+# # Display the map with inset
+# print(freshwater_map_with_inset)
+#
+# # Save the map
+# ggsave(
+#   "plots/freshwater_copper_map_with_oslofjord_inset.png",
+#   freshwater_map_with_inset,
+#   width = 12,
+#   height = 8,
+#   dpi = 300
+# )
+#
+# # Similar code for marine map
+# marine_map_with_inset <- create_map_with_inset(
+#   main_data = fylke_coastal_with_data |> filter(!is.na(TIME_PERIOD)),
+#   background_data = marine_background,
+#   inset_bbox = oslofjord_bbox
+# )
+#
+# # Display and save the marine map with inset
+# print(marine_map_with_inset)
+# ggsave(
+#   "plots/marine_copper_map_with_oslofjord_inset.png",
+#   marine_map_with_inset,
+#   marine_map,
+#   width = 12,
+#   height = 8,
+#   dpi = 300
+# )

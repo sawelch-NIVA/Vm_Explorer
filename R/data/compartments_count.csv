@@ -5,24 +5,24 @@ Aquatic,Marine/Salt Water,Not relevant,Not relevant,30261
 Aquatic,Not reported,Not relevant,Not relevant,21
 Aquatic,Stormwater,Not relevant,Not relevant,16
 Biota,Biota/Aquatic,Abramis brama,Liver,13
-Biota,Biota/Aquatic,Acesta excavata,Soft Body Part,1
+Biota,Biota/Aquatic,Acesta excavata,Soft Tissue,1
 Biota,Biota/Aquatic,Actinopterygii (Klasse),Liver,2
 Biota,Biota/Aquatic,Ascophyllum nodosum,Shoot tip,13
-Biota,Biota/Aquatic,Ascophyllum nodosum,Soft Body Part,3
+Biota,Biota/Aquatic,Ascophyllum nodosum,Soft Tissue,3
 Biota,Biota/Aquatic,Blicca bjoerkna,Liver,15
-Biota,Biota/Aquatic,Bunndyr,Soft Body Part,2
-Biota,Biota/Aquatic,Cancer pagurus,Soft Body Part,287
+Biota,Biota/Aquatic,Bunndyr,Soft Tissue,2
+Biota,Biota/Aquatic,Cancer pagurus,Soft Tissue,287
 Biota,Biota/Aquatic,Cancer pagurus,Whole body,2
-Biota,Biota/Aquatic,Carcinus maenas,Soft Body Part,24
+Biota,Biota/Aquatic,Carcinus maenas,Soft Tissue,24
 Biota,Biota/Aquatic,Centrolabrus exoletus,Whole body,3
 Biota,Biota/Aquatic,Chironomidae (Familie),Whole body,2
-Biota,Biota/Aquatic,Chlamys islandica,Soft Body Part,2
+Biota,Biota/Aquatic,Chlamys islandica,Soft Tissue,2
 Biota,Biota/Aquatic,Coregonus lavaretus,Liver,39
 Biota,Biota/Aquatic,Ctenolabrus rupestris,Whole body,152
-Biota,Biota/Aquatic,Erginus (Slekt),Soft Body Part,1
+Biota,Biota/Aquatic,Erginus (Slekt),Soft Tissue,1
 Biota,Biota/Aquatic,Esox lucius,Liver,27
 Biota,Biota/Aquatic,Euphausiacea (Orden),Whole body,27
-Biota,Biota/Aquatic,Fucus vesiculosus,Soft Body Part,1
+Biota,Biota/Aquatic,Fucus vesiculosus,Soft Tissue,1
 Biota,Biota/Aquatic,Gadidae (Familie),Liver,2
 Biota,Biota/Aquatic,Gadus morhua,Liver,2664
 Biota,Biota/Aquatic,Gastropoda (Klasse),Whole body,1
@@ -30,21 +30,21 @@ Biota,Biota/Aquatic,Gymnocephalus cernuus,Liver,12
 Biota,Biota/Aquatic,Gymnocephalus cernuus,Whole body,1
 Biota,Biota/Aquatic,Labrus bergylta,Whole body,4
 Biota,Biota/Aquatic,Labrus mixtus,Whole body,1
-Biota,Biota/Aquatic,Lepetella (Slekt),Soft Body Part,1
+Biota,Biota/Aquatic,Lepetella (Slekt),Soft Tissue,1
 Biota,Biota/Aquatic,Leuciscus idus,Liver,2
 Biota,Biota/Aquatic,Limanda limanda,Liver,13
-Biota,Biota/Aquatic,Lithodidae (Familie),Soft Body Part,1
-Biota,Biota/Aquatic,Littorina (Slekt),Soft Body Part,10
-Biota,Biota/Aquatic,Littorina littorea,Soft Body Part,30
+Biota,Biota/Aquatic,Lithodidae (Familie),Soft Tissue,1
+Biota,Biota/Aquatic,Littorina (Slekt),Soft Tissue,10
+Biota,Biota/Aquatic,Littorina littorea,Soft Tissue,30
 Biota,Biota/Aquatic,Lota lota,Liver,20
 Biota,Biota/Aquatic,Melanogrammus aeglefinus,Liver,1
-Biota,Biota/Aquatic,Modiolus modiolus,Soft Body Part,57
-Biota,Biota/Aquatic,Mytilus edulis,Soft Body Part,2885
+Biota,Biota/Aquatic,Modiolus modiolus,Soft Tissue,57
+Biota,Biota/Aquatic,Mytilus edulis,Soft Tissue,2885
 Biota,Biota/Aquatic,Mytilus edulis,Whole body,17
-Biota,Biota/Aquatic,Nucella lapillus,Soft Body Part,3
-Biota,Biota/Aquatic,Palaemon adspersus,Soft Body Part,2
-Biota,Biota/Aquatic,Pandalus borealis,Soft Body Part,15
-Biota,Biota/Aquatic,Patella vulgata,Soft Body Part,149
+Biota,Biota/Aquatic,Nucella lapillus,Soft Tissue,3
+Biota,Biota/Aquatic,Palaemon adspersus,Soft Tissue,2
+Biota,Biota/Aquatic,Pandalus borealis,Soft Tissue,15
+Biota,Biota/Aquatic,Patella vulgata,Soft Tissue,149
 Biota,Biota/Aquatic,Perca fluviatilis,Liver,29
 Biota,Biota/Aquatic,Perca fluviatilis,Whole body,3
 Biota,Biota/Aquatic,Platichthys flesus,Liver,78
@@ -63,11 +63,11 @@ No information/not reported,No information/not reported,Abramis brama,Gill,13
 No information/not reported,No information/not reported,Actinopterygii (Klasse),Muscle,2
 No information/not reported,No information/not reported,Anguilla anguilla,Muscle,9
 No information/not reported,No information/not reported,Apis mellifera,Whole body,2
-No information/not reported,No information/not reported,Aporrectodea caliginosa,Soft Body Part,5
+No information/not reported,No information/not reported,Aporrectodea caliginosa,Soft Tissue,5
 No information/not reported,No information/not reported,Aporrectodea caliginosa,Whole body,15
 No information/not reported,No information/not reported,Ascophyllum nodosum,Not relevant,5
 No information/not reported,No information/not reported,Ascophyllum nodosum,Shoot tip,74
-No information/not reported,No information/not reported,Astacus astacus,Soft Body Part,1
+No information/not reported,No information/not reported,Astacus astacus,Soft Tissue,1
 No information/not reported,No information/not reported,Asteroidea (Klasse),Whole body,3
 No information/not reported,No information/not reported,Balaenoptera physalus,Not relevant,1
 No information/not reported,No information/not reported,Blicca bjoerkna,Gill,20
@@ -75,7 +75,7 @@ No information/not reported,No information/not reported,Bombus (Slekt),Whole bod
 No information/not reported,No information/not reported,Brosme brosme,Liver,5
 No information/not reported,No information/not reported,Brosme brosme,Muscle,2
 No information/not reported,No information/not reported,Cancer pagurus,Muscle,333
-No information/not reported,No information/not reported,Cancer pagurus,Soft Body Part,29
+No information/not reported,No information/not reported,Cancer pagurus,Soft Tissue,29
 No information/not reported,No information/not reported,Cancer pagurus,Whole body,3
 No information/not reported,No information/not reported,Capreolus capreolus,Liver,8
 No information/not reported,No information/not reported,Carcinus maenas,Whole body,7
@@ -84,7 +84,7 @@ No information/not reported,No information/not reported,Clupea harengus,Muscle,2
 No information/not reported,No information/not reported,Coregonus lavaretus,Gill,19
 No information/not reported,No information/not reported,Coregonus lavaretus,Liver,12
 No information/not reported,No information/not reported,Coregonus lavaretus,Muscle,69
-No information/not reported,No information/not reported,Eisenia hortensis,Soft Body Part,7
+No information/not reported,No information/not reported,Eisenia hortensis,Soft Tissue,7
 No information/not reported,No information/not reported,Esox lucius,Gill,1
 No information/not reported,No information/not reported,Esox lucius,Liver,5
 No information/not reported,No information/not reported,Esox lucius,Muscle,41
@@ -95,7 +95,7 @@ No information/not reported,No information/not reported,Fucus vesiculosus,Shoot 
 No information/not reported,No information/not reported,Gadidae (Familie),Muscle,2
 No information/not reported,No information/not reported,Gadus morhua,Liver,664
 No information/not reported,No information/not reported,Gadus morhua,Muscle,43
-No information/not reported,No information/not reported,Gastropoda (Klasse),Soft Body Part,1
+No information/not reported,No information/not reported,Gastropoda (Klasse),Soft Tissue,1
 No information/not reported,No information/not reported,Gastropoda (Klasse),Whole body,2
 No information/not reported,No information/not reported,Glyptocephalus cynoglossus,Liver,1
 No information/not reported,No information/not reported,Hylocomium splendens,Not relevant,492
@@ -110,25 +110,25 @@ No information/not reported,No information/not reported,Leuciscus idus,Gill,2
 No information/not reported,No information/not reported,Lichen (Slekt),Not relevant,66
 No information/not reported,No information/not reported,Limanda limanda,Liver,42
 No information/not reported,No information/not reported,Limanda limanda,Muscle,1
-No information/not reported,No information/not reported,Lumbricidae (Familie),Soft Body Part,5
+No information/not reported,No information/not reported,Lumbricidae (Familie),Soft Tissue,5
 No information/not reported,No information/not reported,Lumbricidae (Familie),Whole body,39
-No information/not reported,No information/not reported,Lumbricus (Slekt),Soft Body Part,5
+No information/not reported,No information/not reported,Lumbricus (Slekt),Soft Tissue,5
 No information/not reported,No information/not reported,Megaptera novaeangliae,Not relevant,1
 No information/not reported,No information/not reported,Melanogrammus aeglefinus,Muscle,4
 No information/not reported,No information/not reported,Meles meles,Liver,11
 No information/not reported,No information/not reported,Microstomus kitt,Liver,4
-No information/not reported,No information/not reported,Modiolus modiolus,Soft Body Part,5
+No information/not reported,No information/not reported,Modiolus modiolus,Soft Tissue,5
 No information/not reported,No information/not reported,Mollusca (Rekke),Whole body,4
 No information/not reported,No information/not reported,Molva molva,Liver,4
 No information/not reported,No information/not reported,Molva molva,Muscle,3
-No information/not reported,No information/not reported,Mysis relicta,Soft Body Part,3
+No information/not reported,No information/not reported,Mysis relicta,Soft Tissue,3
 No information/not reported,No information/not reported,Mytilus edulis,Liver,7
-No information/not reported,No information/not reported,Mytilus edulis,Soft Body Part,810
+No information/not reported,No information/not reported,Mytilus edulis,Soft Tissue,810
 No information/not reported,No information/not reported,Mytilus edulis,Whole body,4
 No information/not reported,No information/not reported,Not relevant,Not relevant,23111
 No information/not reported,No information/not reported,Orcinus orca,Not relevant,3
 No information/not reported,No information/not reported,Pandalus borealis,Muscle,20
-No information/not reported,No information/not reported,Patella vulgata,Soft Body Part,3
+No information/not reported,No information/not reported,Patella vulgata,Soft Tissue,3
 No information/not reported,No information/not reported,Patella vulgata,Whole body,7
 No information/not reported,No information/not reported,Perca fluviatilis,Gill,4
 No information/not reported,No information/not reported,Perca fluviatilis,Liver,2
@@ -168,4 +168,4 @@ No information/not reported,No information/not reported,Thymallus thymallus,Musc
 No information/not reported,No information/not reported,Turdus pilaris,Egg,71
 No information/not reported,No information/not reported,Turdus pilaris,Liver,3
 No information/not reported,No information/not reported,Vulpes vulpes,Liver,82
-No information/not reported,No information/not reported,Zooplankton epilimnion,Soft Body Part,3
+No information/not reported,No information/not reported,Zooplankton epilimnion,Soft Tissue,3

@@ -110,11 +110,11 @@ density_plot_fw <- ggplot(
   )
 ) +
   # Ridge density plot with semi-transparency
-  stat_density_ridges(geom = "density_ridges_gradient", bandwidth = 0.15, rel_min_height = 0.005) +
+  stat_density_ridges(geom = "density_ridges_gradient", bandwidth = 0.15) +
 # geom_density_ridges(alpha = 0.8, scale = 0.9, rel_min_height = 0.01) +
 
   # Log scale for concentrations with formatted labels
-  scale_fill_brewer(palette = "Set3", name = "Organism Type") +
+  scale_fill_brewer(palette = "Set3", name = "") +
   scale_x_log10(
     breaks = c(0.01, 0.1, 1, 10, 100, 1000, 10000, 100000),
     limits = c(0.01, 100000)
@@ -135,7 +135,7 @@ density_plot_fw <- ggplot(
   ) +
   ggridges::theme_ridges() +
   # PowerPoint-friendly styling
-  consistent_theming(base_size = 8) +
+  consistent_theming_graph(base_size = 8) +
   theme(
     # Title styling
     # plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
@@ -186,7 +186,7 @@ density_plot_sw <- ggplot(
   # geom_density_ridges(alpha = 0.8, scale = 0.9, rel_min_height = 0.01) +
 
   # Log scale for concentrations with formatted labels
-  scale_fill_brewer(palette = "Set3", name = "Organism Type") +
+  scale_fill_brewer(palette = "Set3", name = "") +
   scale_x_log10(
     breaks = c(0.01, 0.1, 1, 10, 100, 1000, 10000, 100000),
     limits = c(0.01, 100000)
@@ -208,7 +208,7 @@ density_plot_sw <- ggplot(
   ) +
 
   # PowerPoint-friendly styling
-  consistent_theming(base_size = 8) +
+  consistent_theming_graph(base_size = 8) +
   theme(
     # Title styling
     # plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
